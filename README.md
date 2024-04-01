@@ -86,7 +86,6 @@ If you'd like to contribute to this project, please:
   - [@TheSethRose on 𝕏](https://x.com/TheSethRose)
 
 - **2017-01-28:** Originally created by Matthew Dunham.
-  - [http://matthewdunham.net](http://matthewdunham.net)
   - [matthewdunham on LinkedIn](http://linkedin.com/in/matthewdunham)
 
 ## License
