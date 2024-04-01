@@ -1,8 +1,7 @@
 # Auto Delete All Facebook Messages
-
 *Last Updated: 04/01/2024*
 
-JavaScript utility that allows you to auto delete all your Facebook messages, including archived chats. Adds a feature to Facebook that should have already been added.
+JavaScript utility that allows you to auto delete all your Facebook messages on Messenger.com,. Adds a feature to Facebook that should have already been added.
 
 ## Usage Instructions
 
@@ -28,7 +27,7 @@ The easiest way to use this code is by saving it as a bookmark on your browser's
 4. Delete everything in the URL field and replace it with the following code:
 
 ```javascript
-javascript:!function(e){var t=function(){var n=window.location.href.includes("archived")?e('div[aria-label="Menu"]'):e('div[aria-label="Menu"]');null!==n?(n.click(),setTimeout(o,200)):console.log("There are no messages to delete")},o=function(){var t=Array.from(document.querySelectorAll('div[role="menuitem"]')).find(e=>e.textContent.includes("Delete chat"));null!==t?(t.click(),setTimeout(n,200)):console.log("Delete chat button not found")},n=function(){var t=e('div[aria-label="Delete chat"][role="button"]');null!==t?(t.click(),setTimeout(i,600)):console.log("Confirmation delete button not found")},i=function(){var o=window.location.href.includes("archived")?e('div[aria-label="Menu"]'):e('div[aria-label="Menu"]');null!==o?setTimeout(t,600):console.log("No more messages")};console.log("Deleting Facebook Messages"),t()}(function(e){return document.querySelector(e)});
+javascript:!function(e){var t=function(){var n=window.location.href.includes("archived")?e('div[aria-label="Menu"]'):e('div[aria-label="Menu"]');null!==n?(n.click(),setTimeout(o,200)):console.log("No messages to delete")},o=function(){var t=Array.from(document.querySelectorAll('div[role="menuitem"]')).find(e=>e.textContent.includes("Delete chat"));null!==t?(t.click(),setTimeout(n,200)):console.log("Delete button not found")},n=function(){var t=e('div[aria-label="Delete chat"][role="button"]');null!==t?(t.click(),setTimeout(i,600)):console.log("Confirm button not found")},i=function(){var o=window.location.href.includes("archived")?e('div[aria-label="Menu"]'):e('div[aria-label="Menu"]');null!==o?setTimeout(t,600):console.log("No more messages")};console.log("Deleting messages"),t()}(function(e){return document.querySelector(e)});
 ```
 
 5. Save the bookmark, preferably to your bookmarks bar for faster access.
@@ -43,7 +42,7 @@ You can also run this code using your web browser's console:
 4. Copy the code from the bookmark creation section above and paste it into the console.
 5. Press `Enter` to run the code.
 
-The console will display "Deleting Facebook Messages" to indicate that the script is working. Your messages should start deleting. When the script has finished deleting all your messages, it will display "No more messages" in the console.
+The console will display "Deleting messages" to indicate that the script is working. Your messages should start deleting. When the script has finished deleting all your messages, it will display "No more messages" in the console.
 
 You can stop the delete process at any time by closing your browser, refreshing the page, or navigating away from messenger.com.
 
