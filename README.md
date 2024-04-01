@@ -1,61 +1,95 @@
 # Auto Delete All Facebook Messages
 
+*Last Updated: 04/01/2024*
+
 JavaScript utility that allows you to auto delete all your Facebook messages. Adds a feature to Facebook that should have already been added.
 
-## Usage Instructions 
+## Usage Instructions
 
-**The easiest way** to use this code is by saving it as a bookmark on your browser's [bookmark bar](https://support.google.com/chrome/answer/95745?hl=en). GitHub doesn't allow javascript links to be on readme pages so **[click here](http://matthewdunham.net/del-fb-msgs.html)** and follow the simple one-step instruction.
+### Easiest Method: Bookmark Button
 
-**If that doesn't work try the [manual method](#manual).**
+The easiest way to use this code is by saving it as a bookmark on your browser's bookmark bar.
 
-### How to use the bookmark button
+### How to use the bookmark
 
-After you have the delete button in your bookmarks using the button is easy. Simply log in to your Facebook and go to your "view all messages" page. Once the page loads all you have to do is click the bookmark you just created "Delete FB Messages". Stay on the messages page until all your messages are deleted. Once a message is deleted, it's gone. There is no undelete.
+1. Log in to your Facebook account and go to your "View all messages" page.
+2. Once the page loads, click the "Delete FB Messages" bookmark you just created.
+3. Stay on the messages page until all your messages are deleted. Once a message is deleted, it's gone forever. There is no undelete.
 
-**To stop the delete process simply leave the messages page or just hit refresh.**
+**To stop the delete process, simply leave the messages page or refresh the page.**
 
----
+### Manual Method
 
-#### <a name="manual"></a>Alternatively, you can create the bookmark manually:
+If the bookmark button doesn't work, you can create the bookmark manually:
 
-Instructions for creating the bookmark:
+1. Press `Ctrl+D` (Windows) or `Cmd+D` (Mac) on your keyboard to open the "Create a new bookmark" window.
+2. Title it "Delete FB Messages".
+3. Click the "Edit" button to change the URL of the bookmark.
+4. Delete everything in the URL field and replace it with the following code:
 
-* Press Control+D on your keyboard, this will open the "create a new bookmark" window.
-* Title it "Delete FB Messages" 
-* Then click the "Edit" button, because the URL of the bookmark will need to be changed.
-* Now delete everything that is in the URL field and replace it with the following:
+```javascript
+javascript:!function(e){var t=function(){var n=e('div[aria-label="Menu"]');null!==n?(n.click(),setTimeout(o,200)):console.log("There are no messages to delete")},o=function(){var t=Array.from(document.querySelectorAll('div[role="menuitem"]')).find(e=>e.textContent.includes("Delete chat"));null!==t?(t.click(),setTimeout(n,200)):console.log("Delete chat button not found")},n=function(){var t=e('div[aria-label="Delete chat"][role="button"]');null!==t?(t.click(),setTimeout(i,600)):console.log("Confirmation delete button not found")},i=function(){var o=e('div[aria-label="Menu"]');null!==o?setTimeout(t,600):console.log("No more messages")};console.log("Deleting Facebook Messages"),t()}(function(e){return document.querySelector(e)});
+```
 
-> javascript:!function(e){var t=function(){null!==e('div[aria-label="Conversation actions"]')?(e('div[aria-label="Conversation actions"]').click(),setTimeout(o,200)):console.log("There are no messages to delete")},o=function(){for(var e=document.evaluate('//span[text()="Delete"]',document,null,XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,null),t=0;t<e.snapshotLength;t++)e.snapshotItem(t).click();setTimeout(n,200)},n=function(){e('em[data-intl-translation="Delete"]').parentNode.click(),null!==e('div[aria-label="Conversation actions"]')?setTimeout(t,600):console.log("No more messages")};console.log("Deleting Facebook Messages"),t()}(function(e){return document.querySelector(e)});
+5. Save the bookmark, preferably to your bookmarks bar for faster access.
 
-*The code above is just a minified version of the delete-fb-messages.js file, but make sure the URL of the bookmark is exactly the code above. No http:// or www.*
+### Running it without a bookmark
 
-For faster access make sure to save it to your "bookmark bar" so it is always visible and ready to clean up your inbox. 
+You can also run this code using your web browser's console:
 
-An example of what your bookmark should look like before you actually save the new bookmark:
+1. Navigate to your Facebook messages page.
+2. Press `Ctrl+Shift+I` (Windows) or `Cmd+Option+I` (Mac) to open the developer tools.
+3. If you don't see the console at the bottom of the window, press the `Esc` key.
+4. Copy the code from the manual method section above and paste it into the console.
+5. Press `Enter` to run the code.
 
-![Example Bookmark](http://matthewdunham.net/example1.jpg?t=2)
+The console will display "Deleting Facebook Messages" to indicate that the script is working. Your messages should start deleting. When the script has finished deleting all your messages, it will display "No more messages" in the console.
 
+You can stop the delete process at any time by closing your browser, refreshing the page, or navigating away from your Facebook messages page.
 
+## Security Info
 
+If you see a warning that says "Stop" in red, don't worry. It's just a precaution to stop people from accidentally XSS attacking themselves. This code does not make any external calls and only contains a few lines of code. If you are not comfortable running things from your web console, then don't! Always read and understand what any code will do before running it in the console, regardless of whether you're on Facebook or another site.
 
-* * *
+## Disclaimer
 
-### Running it with-out a bookmark
+This script is provided "as is" without warranty of any kind. The authors are not responsible for any consequences that may arise from using this script. Use at your own risk. Always backup important data before running scripts that can modify or delete your data.
 
-You can also run this code using your web browser's console. First navigate to your Facebook messages page and then press Control+Shift+i on your keyboard. This will open your developer tools once it opens if you do not see the console which should be at the bottom of the window press the Escape key on your keyboard. Now you should see the console now simply copy all the code from the gist and paste it into the console and hit enter.
+## Troubleshooting
 
-Here is what it should look like:
+If the script doesn't seem to be working:
 
-![Example Bookmark](http://matthewdunham.net/example2.jpg?t=1)
+- Make sure you are logged into your Facebook account and on the "View all messages" page.
+- Check that you have pasted the script correctly into the bookmark URL or console.
+- If you get an error in the console, try refreshing the page and running the script again.
+- If messages are not being deleted, the script may need to be updated due to changes in Facebook's UI. Please open an issue on the GitHub repository.
 
-After you've pasted the code into the console don't forget to press the Enter key on your keyboard to run the code. When it runs the console will say "Deleting all Facebook messages - By: Matthew Dunham" this tells you that it is working, and your messages should start deleting. When the script has finished deleting all your messages it will say "No more messages to delete" in the console.
+## Limitations
 
-You can stop the delete process at any time by closing your browser or simply refreshing the page or even just navigate away from your Facebook messages page. 
+- This script can only delete messages that are loaded on the current page. If you have a large number of messages, you may need to scroll down to load more messages and then run the script again.
+- The script may need to be updated in the future if Facebook changes the structure of their messages page.
 
+## Contributing
 
-* * *
+If you'd like to contribute to this project, please:
 
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add your feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
 
-### Security Info
+## Update Log
 
-If you see a warning that says Stop in all red don't worry it's just a precaution to stop people from accidentally XSS attacking themselves. This code does not make any external calls, and only contains 29 lines of code. If you are not comfortable running things from your web console then don't! Always read and know what any code will do before running anything in console. Regardless if you're on Facebook or some other site.
+- **2024-04-01:** Updated script to work with the latest version of messenger.com. Improved selectors, deletion process, error handling, and documentation.
+  - Updated by Seth Rose
+  - [https://www.sethrose.dev](https://www.sethrose.dev)
+  - [@TheSethRose on 𝕏](https://x.com/TheSethRose)
+
+- **2017-01-28:** Originally created by Matthew Dunham.
+  - [http://matthewdunham.net](http://matthewdunham.net)
+  - [matthewdunham on LinkedIn](http://linkedin.com/in/matthewdunham)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
