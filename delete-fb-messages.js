@@ -23,67 +23,73 @@
  * @link https://x.com/TheSethRose
  */
 
-(function($) {
+(function (querySelector) {
   /**
-   * Step 1: Find and click the three-dot menu button.
-   * If the button is found, click it and proceed to Step 2.
-   * If the button is not found, log a message indicating that there are no more messages to delete.
+   * Finds and clicks the three-dot menu button to open the chat actions menu.
+   * If the button is not found, logs a message indicating that there are no more messages to delete.
    */
-  var stepOne = function() {
-    var menuButton = $('div[aria-label="Menu"]');
+  function openChatActionsMenu() {
+    var menuButton =
+      window.location.href.includes("archived") ? querySelector('div[aria-label="Menu"]') : querySelector('div[aria-label="Menu"]');
+    
     if (menuButton !== null) {
       menuButton.click();
-      setTimeout(stepTwo, 200);
+      setTimeout(findDeleteChatButton, 200);
     } else {
-      console.log('There are no messages to delete');
+      console.log("No messages to delete");
     }
-  };
+  }
 
   /**
-   * Step 2: Find and click the "Delete chat" button from the menu.
-   * If the button is found, click it and proceed to Step 3.
-   * If the button is not found, log a message indicating that the delete chat button was not found.
+   * Finds and clicks the "Delete chat" button in the chat actions menu.
+   * If the button is not found, logs a message indicating that the delete button was not found.
    */
-  var stepTwo = function() {
-    var deleteButton = Array.from(document.querySelectorAll('div[role="menuitem"]'))
-      .find(e => e.textContent.includes("Delete chat"));
+  function findDeleteChatButton() {
+    var deleteButton = Array.from(document.querySelectorAll('div[role="menuitem"]')).find(function (element) {
+      return element.textContent.includes("Delete chat");
+    });
+
     if (deleteButton !== undefined) {
       deleteButton.click();
-      setTimeout(stepThree, 200);
+      setTimeout(confirmDeleteChat, 200);
     } else {
-      console.log('Delete chat button not found');
+      console.log("Delete button not found");
     }
-  };
+  }
 
   /**
-   * Step 3: Find and click the confirmation "Delete Chat" button.
-   * If the button is found, click it and proceed to Step 4.
-   * If the button is not found, log a message indicating that the confirmation delete button was not found.
+   * Finds and clicks the confirmation button to delete the chat.
+   * If the button is not found, logs a message indicating that the confirm button was not found.
    */
-  var stepThree = function() {
-    var confirmDeleteButton = $('div[aria-label="Delete chat"][role="button"]');
-    if (confirmDeleteButton !== null) {
-      confirmDeleteButton.click();
-      setTimeout(stepFour, 600);
+  function confirmDeleteChat() {
+    var confirmButton = querySelector('div[aria-label="Delete chat"][role="button"]');
+
+    if (confirmButton !== null) {
+      confirmButton.click();
+      setTimeout(checkForMoreMessages, 600);
     } else {
-      console.log('Confirmation delete button not found');
+      console.log("Confirm button not found");
     }
-  };
+  }
 
   /**
-   * Step 4: Check if there are more messages to delete.
-   * If the three-dot menu button is found, there are more messages to delete, so go back to Step 1.
-   * If the three-dot menu button is not found, log a message indicating that there are no more messages to delete.
+   * Checks if there are more messages to delete by looking for the three-dot menu button.
+   * If the button is found, restarts the process by calling openChatActionsMenu.
+   * If the button is not found, logs a message indicating that there are no more messages.
    */
-  var stepFour = function() {
-    var menuButton = $('div[aria-label="Menu"]');
+  function checkForMoreMessages() {
+    var menuButton =
+      window.location.href.includes("archived") ? querySelector('div[aria-label="Menu"]') : querySelector('div[aria-label="Menu"]');
+    
     if (menuButton !== null) {
-      setTimeout(stepOne, 600);
+      setTimeout(openChatActionsMenu, 600);
     } else {
-      console.log('No more messages to delete');
+      console.log("No more messages");
     }
-  };
+  }
 
-  console.log('Deleting all Facebook messages');
-  stepOne();
-})(function(sel) { return document.querySelector(sel); });
+  console.log("Deleting messages");
+  openChatActionsMenu();
+})(function (selector) {
+  return document.querySelector(selector);
+});
